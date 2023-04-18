@@ -7,8 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @Entity
@@ -33,5 +35,9 @@ public class Contacto implements Serializable {
 
     @Column(name = "borrado")
     private boolean borrado;
+
+    @Column(name = "fecha_nacimiento")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date fechaDeNacimiento;
 
 }
