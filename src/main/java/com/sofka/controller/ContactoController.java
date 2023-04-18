@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,13 +37,23 @@ public class ContactoController {
     }
 
     @DeleteMapping (path = "/contact/{id}")
-    public void borrarContacto() { }
+    public ResponseEntity<Contacto> borrarContacto(Contacto contacto) {
+        log.info("Contacto a borrar: {}", contacto);
+        contactoService.delete(contacto);
+        return new ResponseEntity<>(contacto, HttpStatus.OK);
+    }
 
     @PutMapping(path = "/contact/{id}")
-    public void actualizarContacto() { }
+    public ResponseEntity<Contacto> actualizarContacto(Contacto contacto, @PathVariable("id")Long id) {
+        log.info("Contacto a modificar: {}", contacto);
+        contactoService.update(id, contacto);
+        return new ResponseEntity<>(contacto, HttpStatus.OK);
+    }
 
     @PatchMapping(path = "/contact/name/{id}")
-    public void actualizarNombre() { }
+    public void actualizarNombre() {
+        
+    }
 
     @PatchMapping(path = "/contact/email/{id}")
     public void actualizarEmail() { }
