@@ -34,6 +34,11 @@ public class ContactoService implements IContactoService{
         return contactoDao.save(contacto);
     }
 
+    @Transactional
+    public void updateNombre(Long id, Contacto contacto) {
+        contactoDao.updateNombre(id, contacto.getNombre());
+    }
+
     @Override
     @Transactional
     public void delete(Contacto contacto) {

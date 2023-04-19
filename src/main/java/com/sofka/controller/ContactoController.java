@@ -51,8 +51,10 @@ public class ContactoController {
     }
 
     @PatchMapping(path = "/contact/name/{id}")
-    public void actualizarNombre() {
-        
+    public ResponseEntity<Contacto> actualizarNombre(Contacto contacto, @PathVariable("id")Long id) {
+        log.info("Contacto a modificar: {}", contacto);
+        contactoService.updateNombre(id, contacto);
+        return new ResponseEntity<>(contacto, HttpStatus.OK);
     }
 
     @PatchMapping(path = "/contact/email/{id}")
