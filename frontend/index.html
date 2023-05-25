@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts list</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Cabecera de la pagina -->
+    <header>
+        <h1 class="title">Agenda de contactos</h1>        
+    </header>
+
+    <!-- Opciones de la agenda -->
+    <nav>
+        <button class="selection-btn">Añadir nuevo contacto</button>
+        <a href="contactsdeleted.html" class="option"><button class="selection-btn">Ver contactos eliminados</button></a>
+    </nav>
+
+    <!-- Formulario -->
+    <div class="contact-form">
+        
+    </div>
+
+    <!-- Lista de contactos almacenados-->
+    <div class="contact-list">
+        <table class="content-table" id="contacts-table">           
+            <thead> 
+                <tr>
+                    <th>Id</th> 
+                    <th>Nombres</th> 
+                    <th>Apellidos</th> 
+                    <th>email</th> 
+                    <th>Número de teléfono</th>
+                    <th>Fecha de nacimiento</th>
+                </tr> 
+            </thead> 
+            <tbody>  
+                 
+            </tbody> 
+        </table>
+
+    </div>
+
+    <!-- Scripts de Axios y el archivo que consume la API -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/formcontrol.js"></script>
+</body>
+</html>

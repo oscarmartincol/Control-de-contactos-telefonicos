@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    background-position: top center;
+    height: 1080px;
+    background-color: #A0522D;
+}
+
+header{
+    position: relative;
+    margin: auto;
+    width: 1000px;
+    height: 200 px;
+    background-color: #191970;
+}
+
+.title{
+    color: aliceblue;
+    text-align: center;
+    font-style: italic;
+    font-size: 40px;
+    padding: 40px;
+}
+
+nav{
+    margin: auto;
+    position: relative;
+    width: 1000px;
+    height: 60px;
+    background-color: #FFEBCD; 
+    text-align: center;  
+}
+
+.contact-form {
+    margin: auto;
+    padding-bottom: 20px;
+    width: 1000px;
+    background-color: #FFEBCD;
+}
+
+form {
+    width: 1000px;
+    margin: auto;
+    padding: 15px;
+
+}
+
+form label {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 0.5em;
+    padding-inline-start: 0.5em;
+}
+
+form label span {
+    color: #DA1414;
+}
+
+form input {
+    box-sizing: border-box;
+    width: 70%;
+    font-size: 1rem;
+    padding: 0.2em;
+    border-radius: 0.5em;
+    border: 1px solid #858C94;
+}
+
+
+.option{
+    width: 260px;
+    height: 60px;
+    padding-inline: 90px;
+}
+
+.selection-btn, .button-add{
+    width: 260px;
+    height: 55px;
+    margin-top: 5px;
+    background-color: #9E9D24;
+    color: #FFEE58;
+}
+
+form .button-edit{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.contact-list {
+    margin: auto;
+    width: 1000px;
+    text-align: center;
+    background-color: #FFEBCD;
+    min-height: 500px;
+}
+
+.content-table {
+    margin: auto;
+    padding: 25px;   
+    font-size: 0.7em; 
+    font-family: sans-serif; 
+    min-width: 800px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); 
+}
+
+.content-table thead tr { 
+    background-color: #556B2F; 
+    color: #ffffff; 
+    text-align: middle; 
+}
+
+td, th {
+    border-bottom: 1px solid; 
+    padding: 12px 15px; 
+}
+
+.content-table tbody tr { 
+    border-bottom: 1px solid #dddddd; 
+} 
+.content-table tbody tr:nth-of-type(even) {
+     background-color: #f3f3f3; 
+} 
+.content-table tbody tr:last-of-type { 
+    border-bottom: 2px solid #009879; 
+}
+.button-edit {
+    background-color: #FF8C00;
+    padding: 6px;
+    color: #191970;
+    
+}

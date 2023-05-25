@@ -14,30 +14,35 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "contactos")
+@Table(name = "contacts")
 public class Contacto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_contactos")
+    @Column(name = "id_contact")
     private Long id;
 
-    @Column(name = "nombre_completo")
+    @Column(name = "contact_name")
     private String nombre;
 
-    @Column(name = "email")
+    @Column(name = "contact_lastname")
+    private String apellido;
+
+    @Column(name = "contact_email")
     private String email;
 
-    @Column(name = "telefono")
+    @Column(name = "contact_phone")
     private String telefono;
 
-    @Column(name = "borrado")
+    @Column(name = "deleted")
     private boolean borrado;
 
-    @Column(name = "fecha_nacimiento")
+    @Column(name = "contact_birthdate")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date fechaDeNacimiento;
+
+
 
 }
