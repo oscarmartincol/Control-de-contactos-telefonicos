@@ -2,9 +2,6 @@
  * Selección de boton para crear contacto
  */
 const newContact = document.querySelector(".selection-btn");
-/**
- * Selección del contenedor donde aparecera el formulario
- */
 
 /**
  * Muestra el formulario cuando el usuario quiera crear un nuevo contacto
@@ -41,20 +38,27 @@ newContact.addEventListener("click", function() {
 
     const form = document.getElementById('user-form');
 
-    form.addEventListener('submit', function(e) {
+    /**
+     * Evento que envia los datos al hacer el submit del formulario.
+     */
+    form.addEventListener('submit', function() {
       console.log('formulario enviado');
       addContact(form);
     });
 
 })
 
+/**
+ * Método para agregar contactos con la petición POST y axios.
+ * @param {*Representa el formulario que contiene los datos del contacto} formData 
+ */
 async function addContact(formData) {
 
   const info = new FormData(formData);
   const date = new Date(info.get('fechaDeNacimiento'));
   const birthDate = date.toLocaleDateString('es-Es', { day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/-/g, '/');
     try {
-      const data = await axios.post('http://localhost:8080/contact', {
+      const { request } = await axios.post('http://localhost:8080/contact', {
         nombre: info.get('nombre'),
         apellido: info.get('apellido'),
         email: info.get('email'),
@@ -66,25 +70,13 @@ async function addContact(formData) {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       });
-      console.log(data);
-      console.log("contacto agregado");
+      if(request.status === 201){
+        alert('El usuario ha sido agregado a la agenda');
+      }
     }catch {
+      alert('Error al agregar contacto, verifica que el número de telefono no este registrado en la agenda.');
       console.log("Error al agregar contacto");
     }
   }
 
-  /*async function addContact(form) {
-    console.log(form)
-
-    const {data} = await axios.post('http://localhost:8080/contact', form, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      })
-    try {
-      
-    }catch {
-      console.log("Error al agregar contacto");
-    }
-  }*/
   

@@ -39,6 +39,10 @@ public class ContactoService implements IContactoService{
         contactoDao.updateNombre(id, contacto.getNombre());
     }
 
+    @Transactional
+    public void updateBorradoLogico(Long id, Contacto contacto) {
+        contactoDao.updateBorradoLogico(id, contacto.isBorrado());
+    }
     @Override
     @Transactional
     public void delete(Contacto contacto) {
