@@ -10,22 +10,32 @@ async function getContacts() {
       for(let contact of contacts) {
         if(!contact.borrado) {
           const birthDate = new Date(contact.fechaDeNacimiento);
+          const inputName = '<input id="input-name'+contact.id+'" class="hide input-table" value='+contact.nombre+'>';
+          const inputLastname = '<input id="input-lastname'+contact.id+'" class="hide input-table" value='+contact.apellido+'>';
+          const inputEmail = '<input id="input-email'+contact.id+'" class="hide input-table" value='+contact.email+'>';
+          const inputPhone = '<input id="input-phone'+contact.id+'" class="hide input-table" value='+contact.telefono+'>';
+          const inputBirthDate = '<input type="date" id="input-birthdate'+contact.id+'" class="hide input-table" value='+birthDate.toISOString().split('T')[0]+'>';
+          const container = '<div id="hola" class="info'+contact.id+'">';
+          console.log(contact);
 
           table.innerHTML += `
           <tr> 
             <td>${contact.id}</td>
-            <td>${contact.nombre}</td>
-            <td>${contact.apellido}</td>
-            <td>${contact.email}</td>
-            <td>${contact.telefono}</td>
-            <td>${birthDate.toLocaleDateString('es-Es', { day: '2-digit', month: '2-digit', year: 'numeric'})}</td>
-            <td><button class="button-edit edit" value= ${contact.id}>editar</button></td>
+            <td>${inputName} ${container}${contact.nombre}</div></td>
+            <td>${inputLastname} <div class="info${contact.id}">${contact.apellido}</div></td>
+            <td>${inputEmail} <div class="info${contact.id}">${contact.email}</div></td>
+            <td>${inputPhone} <div class="info${contact.id}">${contact.telefono}</div></td>
+            <td>${inputBirthDate} <div class="info${contact.id}">${birthDate.toLocaleDateString('es-Es', 
+            { day: '2-digit', month: '2-digit', year: 'numeric'})}</div></td>
+            <td><button class="button-edit edit" index= ${contact.id}>editar</button>
+            <button class="save-btn hide" id="save${contact.id}" index= ${contact.id}>Guardar</button></td>
             <td><button class="button-edit delete" value= ${contact.id}>eliminar</button></td>
           </tr>
           `;
         }
       }
       deleteContact();
+      editContact();
     } catch (error) { 
       alert('No se logro acceder a la API de contactos.')
       console.error(error);
@@ -36,7 +46,7 @@ async function getContacts() {
  * Método encargado de realizar el borrado lógico de los contactos
  */
 function deleteContact() {
-  //Variable que almacena todos los botones con la clase delete presentes en el archivo html
+  //Variable que almacena todos los botones con la clase delete presentes en la pagina
   const deleteButtons = document.querySelectorAll('.delete');
   for(let button of deleteButtons) {
     button.addEventListener("click", async event => {
@@ -57,4 +67,73 @@ function deleteContact() {
     })
   }
 } 
+
+function editContact() {
+  //Variable que almacena todos los botones con la clase edit presentes en la pagina
+  const editButtons = document.querySelectorAll('.edit');
+  for(let button of editButtons) {
+    button.addEventListener("click", event => {
+      const index = event.target.getAttribute('index');
+      button.classList.add("hide");
+      show(index);
+    })
+  }
+}
+
+function show(index) {
+  const divs = document.querySelectorAll('.info'+index);
+  const saveButton = document.querySelector('#save'+index);
+  console.log(divs);
+  const name = document.querySelector('#input-name'+index);
+  const lastname = document.querySelector('#input-lastname'+index);
+  const email = document.querySelector('#input-email'+index);
+  const phone = document.querySelector('#input-phone'+index);
+  const date = document.querySelector('#input-birthdate'+index);
+  console.log(name);
+
+  for(let div of divs) {
+    div.classList.add("hide");
+  }
+  name.classList.remove("hide");
+  lastname.classList.remove("hide");
+  email.classList.remove("hide");
+  phone.classList.remove("hide");
+  date.classList.remove("hide");
+  saveButton.classList.remove("hide");
+  saveContact(index);
+}
+
+function saveContact(index) {
+  const saveButtons = document.querySelectorAll(".save-btn");
+  
+  for(let button of saveButtons) {
+    button.addEventListener("click", event => {
+      const name = document.querySelector('#input-name'+index).value;
+      const lastname = document.querySelector('#input-lastname'+index).value;
+      const email = document.querySelector('#input-email'+index).value;
+      const phone = document.querySelector('#input-phone'+index).value;
+      const dateInput = document.querySelector('#input-birthdate'+index).value;
+      const date = new Date(dateInput);
+      console.log(name);
+      try {
+        axios.put('http://localhost:8080/contact/'+index,{
+          nombre: name,
+          apellido: lastname,
+          email: email,
+          telefono: phone,
+          fechaDeNacimiento: date.toLocaleDateString('es-Es', { day: '2-digit', month: '2-digit', year: 'numeric'})
+        }, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+        window.alert('Contacto actualizado');
+
+      }catch {
+        console.log('No se pudo actualizar la información del contacto');
+        window.alert('No se pudo actualizar la información del contacto');
+      }
+    })
+  }
+}
 getContacts();

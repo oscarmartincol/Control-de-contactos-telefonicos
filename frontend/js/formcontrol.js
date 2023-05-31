@@ -71,10 +71,10 @@ async function addContact(formData) {
         }
       });
       if(request.status === 201){
-        alert('El usuario ha sido agregado a la agenda');
+        window.alert('El usuario ha sido agregado a la agenda');
       }
     }catch {
-      alert('Error al agregar contacto, verifica que el número de telefono no este registrado en la agenda.');
+      window.alert('Error al agregar contacto, verifica que el número de telefono no este registrado en la agenda.');
       console.log("Error al agregar contacto");
     }
   }
