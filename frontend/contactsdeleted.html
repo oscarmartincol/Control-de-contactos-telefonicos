@@ -4,9 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deleted contacts</title>
+    <title>Contactos eliminados</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <link href="css/deleted.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Cabecera de la pagina -->
+    <header>
+        <h1 class="title">Contactos eliminados</h1>        
+    </header>
+
+    <!-- Lista de contactos eliminados-->
+    <div class="contact-list">
+        <table class="content-table" id="contacts-table">           
+            <thead> 
+                <tr>
+                    <th>Id</th> 
+                    <th>Nombres</th> 
+                    <th>Apellidos</th> 
+                    <th>email</th> 
+                    <th>Número de teléfono</th>
+                    <th>Fecha de nacimiento</th>
+                </tr> 
+            </thead> 
+            <tbody id="body">   
+                 
+            </tbody> 
+        </table>
+
+        <div><a href="index.html">Regresar a la agenda de contactos</a></div>
+    </div>
+
     
+
+    <!-- Scripts de Axios y el archivo que consume la API -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/deletedContacts.js"></script>
 </body>
 </html>

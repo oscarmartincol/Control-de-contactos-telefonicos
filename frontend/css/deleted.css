@@ -1,0 +1,17 @@
+.delete-btn {
+    width: 100%;
+    background-color: #FF0000;
+    padding: 6px;
+
+}
+.restore-btn {
+    width: 100%;
+    background-color: #B0E0E6;
+    padding: 6px;
+}
+a{
+    background-color: goldenrod;
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid;
+}
