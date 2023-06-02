@@ -8,13 +8,14 @@ async function getContacts() {
       const contacts = response.data;
       const table = document.getElementById("contacts-table");
       for(let contact of contacts) {
+        //Condición que verifica que el contacto no se encuentra borrado de forma lógica
         if(!contact.borrado) {
           const birthDate = new Date(contact.fechaDeNacimiento);
-          const inputName = '<input id="input-name'+contact.id+'" class="hide input-table" value='+contact.nombre+'>';
-          const inputLastname = '<input id="input-lastname'+contact.id+'" class="hide input-table" value='+contact.apellido+'>';
-          const inputEmail = '<input id="input-email'+contact.id+'" class="hide input-table" value='+contact.email+'>';
-          const inputPhone = '<input id="input-phone'+contact.id+'" class="hide input-table" value='+contact.telefono+'>';
-          const inputBirthDate = '<input type="date" id="input-birthdate'+contact.id+'" class="hide input-table" value='+birthDate.toISOString().split('T')[0]+'>';
+          const inputName = '<input required id="input-name'+contact.id+'" class="hide input-table" value='+contact.nombre+'>';
+          const inputLastname = '<input required id="input-lastname'+contact.id+'" class="hide input-table" value='+contact.apellido+'>';
+          const inputEmail = '<input required id="input-email'+contact.id+'" class="hide input-table" value='+contact.email+'>';
+          const inputPhone = '<input required id="input-phone'+contact.id+'" class="hide input-table" value='+contact.telefono+'>';
+          const inputBirthDate = '<input required type="date" id="input-birthdate'+contact.id+'" class="hide input-table" value='+birthDate.toISOString().split('T')[0]+'>';
           const container = '<div id="hola" class="info'+contact.id+'">';
           console.log(contact);
 
@@ -68,6 +69,9 @@ function deleteContact() {
   }
 } 
 
+/**
+ * Método que activa los campos para ingresar los datos que se quieren actualizar del contacto
+ */
 function editContact() {
   //Variable que almacena todos los botones con la clase edit presentes en la pagina
   const editButtons = document.querySelectorAll('.edit');
@@ -80,6 +84,10 @@ function editContact() {
   }
 }
 
+/**
+ * Método para mostrar boton guardar y los input de los datos
+ * @param {*id del contacto} index 
+ */
 function show(index) {
   const divs = document.querySelectorAll('.info'+index);
   const saveButton = document.querySelector('#save'+index);
@@ -91,6 +99,7 @@ function show(index) {
   const date = document.querySelector('#input-birthdate'+index);
   console.log(name);
 
+// Ciclo para mostrar las celdas de la tabla como entradas
   for(let div of divs) {
     div.classList.add("hide");
   }
@@ -103,6 +112,10 @@ function show(index) {
   saveContact(index);
 }
 
+/**
+ * Método para guardar la información actualizada del contacto
+ * @param {*id del contacto} index 
+ */
 function saveContact(index) {
   const saveButtons = document.querySelectorAll(".save-btn");
   
@@ -128,6 +141,7 @@ function saveContact(index) {
           }
         });
         window.alert('Contacto actualizado');
+        window.location.reload();
 
       }catch {
         console.log('No se pudo actualizar la información del contacto');

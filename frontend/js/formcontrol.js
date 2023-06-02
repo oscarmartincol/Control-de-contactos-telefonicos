@@ -9,6 +9,7 @@ const newContact = document.querySelector(".selection-btn");
 newContact.addEventListener("click", function() {
     const container = document.querySelector(".contact-form");
 
+    //condición que verifica que el formulario aun no se ha generado.
     if(document.querySelector("form") === null) {
 
         container.innerHTML += `

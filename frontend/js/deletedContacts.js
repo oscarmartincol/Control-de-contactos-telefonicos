@@ -1,3 +1,7 @@
+
+/**
+ * Método para mostrar en una tabla la información de los contactos que tienen activado el borrado lógico.
+ */
 async function showDeletedContacts() {
     try {
         const response = await axios.get('http://localhost:8080/contacts');
@@ -31,6 +35,9 @@ async function showDeletedContacts() {
     }
 }
 
+/**
+ * Método para realizar el borrado fisico del contacto al presionar un boton.
+ */
 function deleteContacts() {
     const deleteButtons = document.querySelectorAll('.delete-btn');
     for(let button of deleteButtons) {
@@ -56,6 +63,9 @@ function deleteContacts() {
 
 }
 
+/**
+ * Método para recuperar la información de un contacto que tiene activado el borrado lógico.
+ */
 function restoreContact() {
     const restoreButtons = document.querySelectorAll('.restore-btn');
     for(let button of restoreButtons) {

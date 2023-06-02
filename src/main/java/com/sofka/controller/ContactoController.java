@@ -1,7 +1,4 @@
 package com.sofka.controller;
-/**
- * Imports
- */
 import com.sofka.domain.Contacto;
 import com.sofka.service.ContactoService;
 import lombok.extern.slf4j.Slf4j;
@@ -78,23 +75,6 @@ public class ContactoController {
         contactoService.update(id, contacto);
         return new ResponseEntity<>(contacto, HttpStatus.OK);
     }
-
-    /****** Quiza no se use, borrar al final.*/
-    @PatchMapping(path = "/contact/name/{id}")
-    public ResponseEntity<Contacto> actualizarNombre(Contacto contacto, @PathVariable("id")Long id) {
-        log.info("Contacto a modificar: {}", contacto);
-        contactoService.updateNombre(id, contacto);
-        return new ResponseEntity<>(contacto, HttpStatus.OK);
-    }
-
-    @PatchMapping(path = "/contact/email/{id}")
-    public void actualizarEmail() { }
-
-    @PatchMapping(path = "/contact/phone/{id}")
-    public void actualizarTelefono() { }
-
-    @PatchMapping(path = "/contact/birthDate/{id}")
-    public void actualizarFechaNacimiento() { }
 
     /**
      * Método para realizar el borrado lógico de un contacto

@@ -8,12 +8,11 @@ import org.springframework.data.repository.query.Param;
 
 public interface ContactoDao extends CrudRepository<Contacto, Long> {
 
-    @Modifying
-    @Query("update Contacto con set con.nombre = :nombre where con.id = :id")
-    public void updateNombre(
-            @Param(value = "id") Long id,
-            @Param(value = "nombre") String nombre);
-
+    /**
+     * Método para actualizar el campo de borrado lógico
+     * @param id id del contacto
+     * @param borrado representa si el contacto se encuentra borrado de forma lógica.
+     */
     @Modifying
     @Query("update Contacto con set con.borrado = :borrado where con.id = :id")
     public void updateBorradoLogico(
